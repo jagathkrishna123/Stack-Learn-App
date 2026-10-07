@@ -72,10 +72,14 @@ export const getBookmarks = async (req, res) => {
     })
       .populate({
         path: "topicId",
-        select: "title description difficulty readingTime",
+        select: "title description difficulty readingTime moduleId",
         populate: {
           path: "moduleId",
-          select: "title",
+          select: "title stackId",
+          populate: {
+            path: "stackId",
+            select: "name thumbnail description",
+          },
         },
       })
       .sort({ createdAt: -1 });

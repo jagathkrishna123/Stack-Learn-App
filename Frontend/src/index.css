@@ -2,11 +2,20 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dark body,
+  html.dark body {
     background-color: #030712;
     color: #f3f4f6;
-    font-family: 'Outfit', sans-serif;
   }
 }
 
@@ -17,195 +26,208 @@
 }
 
 ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
   background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
   background: #334155;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
 
-/* Dark Mode Quill Editor Overrides */
+/* ========================================================
+   Quill Editor Theming (Light & Dark)
+   ======================================================== */
+
+/* Light Mode Quill */
 .ql-toolbar.ql-snow {
-  background-color: #0f172a;
-  border-color: #334155 !important;
+  background-color: #f8fafc;
+  border-color: #e2e8f0 !important;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  transition: all 0.2s ease;
 }
 
 .ql-container.ql-snow {
-  border-color: #334155 !important;
+  border-color: #e2e8f0 !important;
   border-bottom-left-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
-  background-color: #0b0f19;
+  background-color: #ffffff;
   font-size: 0.95rem;
-  color: #e2e8f0;
+  color: #0f172a;
+  transition: all 0.2s ease;
 }
 
 .ql-editor {
   min-height: 320px;
-  color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .ql-snow .ql-stroke {
-  stroke: #94a3b8 !important;
+  stroke: #64748b !important;
 }
 
 .ql-snow .ql-fill {
-  fill: #94a3b8 !important;
+  fill: #64748b !important;
 }
 
 .ql-snow .ql-picker {
-  color: #94a3b8 !important;
+  color: #64748b !important;
 }
 
 .ql-snow .ql-picker-options {
-  background-color: #1e293b !important;
-  border-color: #334155 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .ql-editor.ql-blank::before {
-  color: #64748b !important;
+  color: #94a3b8 !important;
   font-style: normal;
 }
 
 .ql-snow .ql-editor pre.ql-syntax {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: monospace;
+}
+
+/* Dark Mode Quill Editor Overrides */
+.dark .ql-toolbar.ql-snow {
+  background-color: #0f172a;
+  border-color: #334155 !important;
+}
+
+.dark .ql-container.ql-snow {
+  border-color: #334155 !important;
+  background-color: #0b0f19;
+  color: #e2e8f0;
+}
+
+.dark .ql-editor {
+  color: #e2e8f0 !important;
+}
+
+.dark .ql-snow .ql-stroke {
+  stroke: #94a3b8 !important;
+}
+
+.dark .ql-snow .ql-fill {
+  fill: #94a3b8 !important;
+}
+
+.dark .ql-snow .ql-picker {
+  color: #94a3b8 !important;
+}
+
+.dark .ql-snow .ql-picker-options {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark .ql-editor.ql-blank::before {
+  color: #64748b !important;
+}
+
+.dark .ql-snow .ql-editor pre.ql-syntax {
   background-color: #020617 !important;
   color: #f8fafc !important;
   border: 1px solid #1e293b;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  font-family: monospace;
 }
 
-/* Note Content Typography Render */
+/* ========================================================
+   Note Content Typography Render (Light & Dark)
+   ======================================================== */
 .prose-dark {
-  color: #98989a;
   font-family: "Outfit", sans-serif;
   font-size: 1rem;
   line-height: 1.9;
+  color: #334155;
+  transition: color 0.2s ease;
 }
 
-.prose-dark h1 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.prose-dark h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose-dark h3 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #e2e8f0;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose-dark p {
-  margin-bottom: 1rem;
-  line-height: 1.7;
-}
-
-.prose-dark ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.prose-dark ol {
-  list-style-type: decimal;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.prose-dark blockquote {
-  border-left: 4px solid #6366f1;
-  padding-left: 1rem;
-  color: #94a3b8;
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-
-.prose-dark pre {
-  background-color: #020617;
-  border: 1px solid #1e293b;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  font-family: monospace;
-  margin-bottom: 1rem;
-  color: #38bdf8;
-}
-
-.prose-dark code {
-  background-color: #1e293b;
-  color: #a5b4fc;
-  padding: 0.15rem 0.4rem;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  font-family: monospace;
-}
-
-
-/* Force all note text to use light color */
-.prose-dark * {
-  color: #b5b5bb !important;
-  background: transparent !important;
-}
-
-/* Headings */
 .prose-dark h1,
 .prose-dark h2,
 .prose-dark h3,
 .prose-dark h4,
 .prose-dark h5,
 .prose-dark h6 {
-  color: #ffffff !important;
+  color: #0f172a;
+  font-weight: 700;
 }
 
-/* Strong text */
-.prose-dark strong,
-.prose-dark b {
-  color: #ffffff !important;
+.prose-dark h1 { font-size: 1.75rem; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+.prose-dark h2 { font-size: 1.4rem; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose-dark h3 { font-size: 1.15rem; margin-top: 1rem; margin-bottom: 0.5rem; }
+
+.prose-dark p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  color: #334155;
 }
 
-/* Links */
+.prose-dark ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose-dark ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose-dark li { margin-bottom: 8px; color: #334155; }
+
+.prose-dark blockquote {
+  border-left: 4px solid #6366f1;
+  padding-left: 1rem;
+  color: #64748b;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.prose-dark pre {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: monospace;
+  margin-bottom: 1rem;
+  color: #0284c7;
+}
+
+.prose-dark code {
+  background-color: #f1f5f9;
+  color: #4f46e5;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: monospace;
+}
+
 .prose-dark a {
-  color: #60a5fa !important;
+  color: #2563eb;
   text-decoration: underline;
 }
 
-/* Lists */
-.prose-dark ul,
-.prose-dark ol {
-  padding-left: 1.5rem;
-}
-
-.prose-dark li {
-  margin-bottom: 8px;
-}
-
-/* Images */
 .prose-dark img {
   max-width: 100%;
   border-radius: 12px;
   margin: 16px 0;
 }
 
-/* Tables */
 .prose-dark table {
   width: 100%;
   border-collapse: collapse;
@@ -214,11 +236,61 @@
 
 .prose-dark th,
 .prose-dark td {
-  border: 1px solid #334155;
+  border: 1px solid #e2e8f0;
   padding: 10px;
 }
 
 .prose-dark th {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* Dark Mode Prose */
+.dark .prose-dark {
+  color: #b5b5bb;
+}
+
+.dark .prose-dark * {
+  color: #b5b5bb;
+}
+
+.dark .prose-dark h1,
+.dark .prose-dark h2,
+.dark .prose-dark h3,
+.dark .prose-dark h4,
+.dark .prose-dark h5,
+.dark .prose-dark h6,
+.dark .prose-dark strong,
+.dark .prose-dark b {
+  color: #ffffff !important;
+}
+
+.dark .prose-dark p,
+.dark .prose-dark li {
+  color: #cbd5e1 !important;
+}
+
+.dark .prose-dark a {
+  color: #60a5fa !important;
+}
+
+.dark .prose-dark pre {
+  background-color: #020617 !important;
+  border-color: #1e293b;
+  color: #38bdf8 !important;
+}
+
+.dark .prose-dark code {
+  background-color: #1e293b !important;
+  color: #a5b4fc !important;
+}
+
+.dark .prose-dark table th,
+.dark .prose-dark table td {
+  border-color: #334155;
+}
+
+.dark .prose-dark th {
   background: #1e293b;
   color: white !important;
 }

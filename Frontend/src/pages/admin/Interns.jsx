@@ -224,17 +224,17 @@ const confirmDelete = async () => {
       {/* Header Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white tracking-tight">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
             Intern Accounts
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Manage intern enrollments & assigned tech stacks
           </p>
         </div>
 
         <button
           onClick={handleOpenAddModal}
-          className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all"
+          className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center justify-center space-x-2 transition-all cursor-pointer"
         >
           <FiPlus className="w-4 h-4" />
           <span>Register New Intern</span>
@@ -243,13 +243,13 @@ const confirmDelete = async () => {
 
       {/* Search Bar */}
       <div className="relative max-w-md">
-        <FiSearch className="absolute left-3.5 top-3 text-slate-500 w-4 h-4" />
+        <FiSearch className="absolute left-3.5 top-3 text-slate-400 dark:text-slate-500 w-4 h-4" />
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search interns by name or email..."
-          className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+          className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-500 shadow-sm"
         />
       </div>
 
@@ -257,10 +257,10 @@ const confirmDelete = async () => {
       {loading ? (
         <Loader text="Loading intern accounts..." />
       ) : filteredInterns.length > 0 ? (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-800/80 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800">
+              <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="px-6 py-3.5">Intern Name</th>
                   <th className="px-6 py-3.5">Assigned Stack</th>
@@ -269,29 +269,29 @@ const confirmDelete = async () => {
                   <th className="px-6 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
                 {filteredInterns.map((intern) => (
                   <tr
                     key={intern._id}
-                    className="hover:bg-slate-800/40 transition-colors"
+                    className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold flex items-center justify-center">
+                        <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20 font-bold flex items-center justify-center">
                           {intern.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <div className="font-bold text-white text-xs">
+                          <div className="font-bold text-slate-900 dark:text-white text-xs">
                             {intern.name}
                           </div>
-                          <div className="text-slate-400 text-[11px]">
+                          <div className="text-slate-500 dark:text-slate-400 text-[11px]">
                             {intern.email}
                           </div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold text-[11px]">
+                      <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-200 dark:bg-indigo-500/10 dark:text-indigo-300 dark:border-indigo-500/20 font-semibold text-[11px]">
                         {intern.assignedStack?.name || "Unassigned"}
                       </span>
                     </td>
@@ -299,14 +299,14 @@ const confirmDelete = async () => {
                       <span
                         className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold ${
                           intern.isActive
-                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                            : "bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                            ? "bg-emerald-50 text-emerald-600 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20"
+                            : "bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20"
                         }`}
                       >
                         {intern.isActive ? "Active" : "Disabled"}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-slate-400 text-[11px]">
+                    <td className="px-6 py-4 text-slate-500 dark:text-slate-400 text-[11px]">
                       {intern.lastLogin
                         ? new Date(intern.lastLogin).toLocaleString()
                         : "Never"}
@@ -315,21 +315,21 @@ const confirmDelete = async () => {
                       <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => handleOpenResetPassModal(intern)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-amber-500/10 border border-transparent hover:border-amber-500/20"
+                          className="p-1.5 rounded-lg text-slate-500 hover:text-amber-600 hover:bg-amber-50 dark:text-slate-400 dark:hover:text-amber-400 dark:hover:bg-amber-500/10 border border-transparent hover:border-amber-200 dark:hover:border-amber-500/20 cursor-pointer"
                           title="Reset Password"
                         >
                           <FiKey className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleOpenEditModal(intern)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 border border-transparent hover:border-indigo-500/20"
+                          className="p-1.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 dark:text-slate-400 dark:hover:text-indigo-400 dark:hover:bg-indigo-500/10 border border-transparent hover:border-indigo-200 dark:hover:border-indigo-500/20 cursor-pointer"
                           title="Edit Details"
                         >
                           <FiEdit2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDelete(intern._id)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20"
+                          className="p-1.5 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-rose-50 dark:text-slate-400 dark:hover:text-rose-400 dark:hover:bg-rose-500/10 border border-transparent hover:border-rose-200 dark:hover:border-rose-500/20 cursor-pointer"
                           title="Delete Account"
                         >
                           <FiTrash2 className="w-4 h-4" />
@@ -343,10 +343,10 @@ const confirmDelete = async () => {
           </div>
         </div>
       ) : (
-        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center space-y-3">
-          <FiUsers className="w-10 h-10 text-slate-600 mx-auto" />
-          <h3 className="text-base font-bold text-white">No Intern Accounts</h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto">
+        <div className="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-12 text-center space-y-3 shadow-sm">
+          <FiUsers className="w-10 h-10 text-slate-400 dark:text-slate-600 mx-auto" />
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">No Intern Accounts</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
             {searchTerm
               ? "No interns match your search filter."
               : "Register new intern accounts to give them access to curriculum stacks."}
@@ -356,15 +356,15 @@ const confirmDelete = async () => {
 
       {/* Add / Edit Intern Modal */}
       {isAddEditModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-lg w-full shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-              <h3 className="text-base font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 max-w-lg w-full shadow-2xl relative">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-4">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
                 {editingIntern ? "Edit Intern Details" : "Register New Intern"}
               </h3>
               <button
                 onClick={() => setIsAddEditModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+                className="p-1 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               >
                 <FiX className="w-5 h-5" />
               </button>
@@ -372,7 +372,7 @@ const confirmDelete = async () => {
 
             <form onSubmit={handleAddEditSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   Full Name *
                 </label>
                 <input
@@ -382,13 +382,13 @@ const confirmDelete = async () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   placeholder="e.g., Alex Johnson"
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   Email Address *
                 </label>
                 <input
@@ -398,14 +398,14 @@ const confirmDelete = async () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   placeholder="alex@example.com"
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                   required
                 />
               </div>
 
               {!editingIntern && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                     Initial Password *
                   </label>
                   <input
@@ -415,14 +415,14 @@ const confirmDelete = async () => {
                       setFormData({ ...formData, password: e.target.value })
                     }
                     placeholder="At least 6 characters"
-                    className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                     required
                   />
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   Assigned Technology Stack *
                 </label>
                 <select
@@ -430,7 +430,7 @@ const confirmDelete = async () => {
                   onChange={(e) =>
                     setFormData({ ...formData, assignedStack: e.target.value })
                   }
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                   required
                 >
                   <option value="" disabled>
@@ -453,29 +453,29 @@ const confirmDelete = async () => {
                     onChange={(e) =>
                       setFormData({ ...formData, isActive: e.target.checked })
                     }
-                    className="w-4 h-4 rounded bg-slate-800 border-slate-700 text-emerald-600 focus:ring-emerald-500"
+                    className="w-4 h-4 rounded bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                   />
                   <label
                     htmlFor="internActiveToggle"
-                    className="text-xs text-slate-300 font-medium"
+                    className="text-xs text-slate-700 dark:text-slate-300 font-medium cursor-pointer"
                   >
                     Account Active (Allowed to login)
                   </label>
                 </div>
               )}
 
-              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsAddEditModalOpen(false)}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold"
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-emerald-600/30 flex items-center space-x-2 disabled:opacity-50"
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-emerald-600/20 flex items-center space-x-2 disabled:opacity-50 cursor-pointer"
                 >
                   {submitting
                     ? "Saving..."
@@ -491,15 +491,15 @@ const confirmDelete = async () => {
 
       {/* Reset Password Modal */}
       {isResetPassModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-              <h3 className="text-base font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 max-w-md w-full shadow-2xl relative">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-4">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
                 Reset Password for {resetPassData.internName}
               </h3>
               <button
                 onClick={() => setIsResetPassModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+                className="p-1 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               >
                 <FiX className="w-5 h-5" />
               </button>
@@ -507,7 +507,7 @@ const confirmDelete = async () => {
 
             <form onSubmit={handleResetPassSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
                   New Password *
                 </label>
                 <input
@@ -520,23 +520,23 @@ const confirmDelete = async () => {
                     })
                   }
                   placeholder="Enter new password (min 6 chars)"
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   required
                 />
               </div>
 
-              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsResetPassModalOpen(false)}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold"
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-amber-600/30 disabled:opacity-50"
+                  className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-amber-600/20 disabled:opacity-50 cursor-pointer"
                 >
                   {submitting ? "Resetting..." : "Reset Password"}
                 </button>
@@ -547,55 +547,50 @@ const confirmDelete = async () => {
       )}
 
       {/* Delete Confirmation Modal */}
-{isDeleteModalOpen && (
-  <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
+            {/* Icon */}
+            <div className="w-12 h-12 rounded-full bg-rose-50 border border-rose-200 text-rose-600 dark:bg-rose-500/10 dark:border-rose-500/20 dark:text-rose-400 flex items-center justify-center mx-auto mb-4">
+              <FiTrash2 className="w-6 h-6" />
+            </div>
 
-    <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
+            {/* Content */}
+            <div className="text-center">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                Delete Intern?
+              </h3>
 
-      {/* Icon */}
-      <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mx-auto mb-4">
-        <FiTrash2 className="w-6 h-6 text-rose-400" />
-      </div>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                Are you sure you want to remove this intern account?
+                This action cannot be undone.
+              </p>
+            </div>
 
-      {/* Content */}
-      <div className="text-center">
-        <h3 className="text-lg font-bold text-white">
-          Delete Intern?
-        </h3>
+            {/* Buttons */}
+            <div className="flex items-center justify-end gap-3 mt-6">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setDeletingInternId(null);
+                }}
+                className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold transition-all cursor-pointer"
+              >
+                Cancel
+              </button>
 
-        <p className="text-sm text-slate-400 mt-2">
-          Are you sure you want to remove this intern account?
-          This action cannot be undone.
-        </p>
-      </div>
-
-      {/* Buttons */}
-      <div className="flex items-center justify-end gap-3 mt-6">
-
-        <button
-          type="button"
-          onClick={() => {
-            setIsDeleteModalOpen(false);
-            setDeletingInternId(null);
-          }}
-          className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition-all"
-        >
-          Cancel
-        </button>
-
-        <button
-          type="button"
-          onClick={confirmDelete}
-          className="px-4 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-semibold transition-all"
-        >
-          Delete
-        </button>
-
-      </div>
-
-    </div>
-  </div>
-)}
+              <button
+                type="button"
+                onClick={confirmDelete}
+                className="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition-all cursor-pointer"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

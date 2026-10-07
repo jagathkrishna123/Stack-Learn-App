@@ -19,12 +19,12 @@ const ProgressBar = ({ progress = 0, size = 'md', showLabel = true, color = 'ind
   return (
     <div className="w-full">
       {showLabel && (
-        <div className="flex justify-between items-center text-xs font-semibold text-slate-300 mb-1.5">
+        <div className="flex justify-between items-center text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
           <span>Completion Progress</span>
-          <span className="text-indigo-400 font-bold">{roundedProgress}%</span>
+          <span className="text-indigo-600 dark:text-indigo-400 font-bold">{roundedProgress}%</span>
         </div>
       )}
-      <div className={`w-full bg-slate-800 rounded-full overflow-hidden ${heightClasses[size]} p-0.5 border border-slate-700/50`}>
+      <div className={`w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden ${heightClasses[size]} p-0.5 border border-slate-300/60 dark:border-slate-700/50`}>
         <div
           className={`${colorClasses[color]} ${heightClasses[size]} rounded-full transition-all duration-500 ease-out`}
           style={{ width: `${roundedProgress}%` }}

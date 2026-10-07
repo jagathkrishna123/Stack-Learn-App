@@ -51,8 +51,8 @@ const NoteEditor = ({ value, onChange, placeholder = 'Write detailed notes, expl
   }, [value]);
 
   return (
-    <div className="bg-slate-900 border border-slate-700/60 rounded-xl overflow-hidden shadow-inner">
-      <div ref={containerRef} className="min-h-[350px] text-slate-100" />
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 rounded-xl overflow-hidden shadow-sm">
+      <div ref={containerRef} className="min-h-[350px] text-slate-900 dark:text-slate-100" />
     </div>
   );
 };
