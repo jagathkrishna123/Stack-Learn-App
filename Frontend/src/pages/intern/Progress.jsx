@@ -17,9 +17,10 @@ const Progress = () => {
     try {
       setLoading(true);
       const res = await progressApi.getSummary();
-      if (res.data && res.data.success) {
-        setSummary(res.data.data);
-      }
+      console.log("progress", res.data);
+    if (res.data && res.data.success) {
+  setSummary(res.data.summary);
+}
     } catch (err) {
       console.error('Error fetching progress summary:', err);
       toast.error('Failed to load progress summary.');
@@ -32,8 +33,7 @@ const Progress = () => {
     return <Loader text="Calculating your curriculum completion stats..." />;
   }
 
-  const overallProgress = summary?.progressPercentage || 0;
-
+const overallProgress = summary?.percentage || 0;
   return (
     <div className="space-y-8">
       {/* Header Overview Card */}
@@ -46,9 +46,9 @@ const Progress = () => {
             <h2 className="text-2xl font-extrabold text-white mt-3 tracking-tight">
               {summary?.assignedStack?.name || 'Assigned Curriculum Stack'}
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
-              Completed {summary?.completedTopicsCount || 0} out of {summary?.totalTopicsCount || 0} topics across {summary?.moduleBreakdown?.length || 0} modules
-            </p>
+           <p className="text-xs text-slate-400 mt-1">
+  Completed {summary?.completedTopics || 0} out of {summary?.totalTopics || 0} topics
+</p>
           </div>
 
           <div className="w-full md:w-80 bg-slate-900 border border-slate-800 p-5 rounded-2xl">

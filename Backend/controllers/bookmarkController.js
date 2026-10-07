@@ -150,7 +150,7 @@ export const removeBookmark = async (req, res) => {
       });
     }
 
-    if (bookmark.internId.toString() !== req.user.id) {
+    if (bookmark.internId.toString() !== req.user.id.toString()) {
       return res.status(403).json({
         success: false,
         message: "Unauthorized.",
